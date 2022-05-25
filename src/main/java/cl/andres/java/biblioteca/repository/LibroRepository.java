@@ -15,5 +15,4 @@ public interface LibroRepository {
 	public void edit(Libro libro);
 	
 	public void delete(int id);
-
 }
