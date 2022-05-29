@@ -4,6 +4,7 @@ import java.util.List;
 
 import cl.andres.java.biblioteca.model.Libro;
 
+
 public interface LibroRepository {
 	
 	public List<Libro> findAll();

@@ -2,6 +2,8 @@ package cl.andres.java.biblioteca.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import cl.andres.java.biblioteca.model.Autor;
 
 public interface AutorRepository {

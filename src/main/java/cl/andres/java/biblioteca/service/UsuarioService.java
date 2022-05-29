@@ -1,6 +1,7 @@
 package cl.andres.java.biblioteca.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +17,7 @@ public class UsuarioService {
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	UsuarioRepository usuarioRepository;
 	
 	// Utiliza el findAll para sacar una lista de usuarios. Si alguno de estos usuarios es ADMIN, lo retorna.
 	// El metodo que llama a este necesita que el retorno sea nulo para crear un admin generico.
@@ -30,8 +31,12 @@ public class UsuarioService {
 		return null;
 	}
 	
-	public Usuario buscarPorEmail(String email){
-		return usuarioRepository.findByEmail(email);
+	public int cantidadUsuarios() {
+		return usuarioRepository.count();
+	}
+	
+	public Optional<Usuario> buscarPorEmail(String email){
+		return Optional.of(usuarioRepository.findByEmail(email));
 	}
 	
 	public Usuario crearUsuario(Usuario usuario){

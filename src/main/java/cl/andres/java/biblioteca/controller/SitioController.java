@@ -11,4 +11,9 @@ public class SitioController {
 		return "inicio";
 	}
 	
+	@GetMapping("/libros")
+	public String libros() {
+		return "listalibros";
+	}
+	
 }

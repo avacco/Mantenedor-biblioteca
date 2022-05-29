@@ -18,7 +18,12 @@ public class UsuarioController {
 	@GetMapping("/generaradmin")
 	public String generarAdmin() {
 		if(usuarioService.checkForAdmin() == null) {
-			Usuario usuario = new Usuario(null, "admin@admin.com","123","ADMIN");
+			
+			Usuario usuario = Usuario.builder()
+										.email("admin@admin.cl")
+										.password("123")
+										.roles("ADMIN")
+										.build();
 			usuarioService.crearUsuario(usuario);
 		}
 		return "redirect:/";
@@ -26,7 +31,7 @@ public class UsuarioController {
 	
 	@GetMapping("/nuevolibro")
 	public String nuevo() {
-		return "admin/libro";
+		return "admin/nuevolibro";
 	}
 	
 	@GetMapping("/index")

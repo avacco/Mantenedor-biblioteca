@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import cl.andres.java.biblioteca.model.Autor;
-
+@Repository
 public class AutorRepositoryImp implements AutorRepository {
 
 	@Autowired

@@ -6,9 +6,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import cl.andres.java.biblioteca.model.Usuario;
-
+@Repository
 public class UsuarioRepositoryImp implements UsuarioRepository {
 
 	@Autowired
@@ -31,10 +32,16 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 	public Usuario findById(int id) {
 		return jdbcTemplate.queryForObject("SELECT * FROM usuarios WHERE id = ?", this::makeObject);
 	}
+	
+	// queryForObject(sql-string, metodo-makeObject, dato-a-reemplazar-el-?);
+	@Override
+	public Usuario findByEmail(String email) {
+		return jdbcTemplate.queryForObject("SELECT * FROM usuarios WHERE email = ?", this::makeObject, email);
+	}
 
 	@Override
 	public void create(Usuario usuario) {
-		String sql = "INSERT INTO usuarios(email,password,roles VALUES(?,?,?)";
+		String sql = "INSERT INTO usuarios(email,password,roles) VALUES(?, ?, ?)";
 		jdbcTemplate.update(sql
 							,usuario.getEmail()
 							,usuario.getPassword()
@@ -61,8 +68,10 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 	}
 	
 
+
 	@Override
-	public Usuario findByEmail(String email) {
-		return jdbcTemplate.queryForObject("SELECT * FROM usuarios WHERE email = ?", this::makeObject);
+	public int count() {
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM usuarios", Integer.class);
+		
 	}
 }

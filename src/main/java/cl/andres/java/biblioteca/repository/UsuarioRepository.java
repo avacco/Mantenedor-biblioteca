@@ -8,6 +8,8 @@ public interface UsuarioRepository {
 
 	public List<Usuario> findAll();
 	
+	public int count();
+	
 	public Usuario findById(int id);
 	
 	public void create(Usuario usuario);
