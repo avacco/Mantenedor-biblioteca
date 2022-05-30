@@ -24,15 +24,11 @@ public class UsuarioService {
 	public Usuario checkForAdmin() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		for(Usuario usuario : usuarios) {
-			if (usuario.getRoles() == "ADMIN") {
+			if (usuario.getRoles().contains("ADMIN")) {
 				return usuario;
 			}
 		}
 		return null;
-	}
-	
-	public int cantidadUsuarios() {
-		return usuarioRepository.count();
 	}
 	
 	public Optional<Usuario> buscarPorEmail(String email){

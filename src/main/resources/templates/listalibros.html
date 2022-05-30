@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head data-th-replace="parts/head :: cabecera(~{::title}, _)">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Inicio</title>
 </head>
-<body>
-<h1>HTML LISTA LIBROS</h1>
+<body class="body-light">
+<!-- include con thymeleaf  -->
+<nav data-th-replace="parts/menu :: menu"></nav>
+ 
+
+<h1>Pagina libros</h1>
+
+<main class="container">
+<h1 class="border-bottom pb-2 mb-0" align="center"> Lista de libros</h1>
+  	<div class="my-3 p-3 bg-body rounded shadow-sm">
+	  	<table id="sortTable" class="table">
+		<thead>
+			<tr>
+				<th style="cursor: pointer;">ID</th>
+				<th style="cursor: pointer;">Nombre</th>
+				<th style="cursor: pointer;">Descripcion</th>
+				<th style="cursor: pointer;">Autor</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  data-th-each="libro : ${libro}">
+				<td data-th-text="${libro.id}"></td>
+				<td data-th-text="${libro.nombre}"></td>
+				<td data-th-text="${libro.descripcion}"></td>
+				<td data-th-text="${libro.autor.nombre}"></td>
+				<td>
+				    <a data-th-href="@{/libros/editar/{id}(id=${libro.id})}">Editar</a>
+				   	<a data-th-href="@{/libros/eliminar/{id}(id=${libro.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+  	</div>
+
+
+
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+	<a class="btn btn-primary" data-th-href="@{/}">Volver</a>
+</div>
+
+<div data-th-replace="parts/scripts :: scripts"></div>
+<div data-th-replace="parts/tablesort :: tablesort"></div>
+
+</main>
 </body>
 </html>

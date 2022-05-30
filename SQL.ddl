@@ -24,3 +24,5 @@ CREATE TABLE libro(
 ALTER TABLE libro
     ADD CONSTRAINT libro_autor_fk FOREIGN KEY ( autor_id )
         REFERENCES autor ( id );
+
+INSERT INTO autor (nombre) VALUES ('Anonimo');

@@ -16,7 +16,7 @@
           <a class="nav-link active" aria-current="page" data-th-href="@{/}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-th-href="@{/libros}">Libros</a>
+          <a class="nav-link" data-th-href="@{/libros/listado}">Libros</a>
         </li>
         <li class="nav-item dropdown"  data-sec-authorize="hasAuthority('ADMIN')">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,7 +24,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" data-th-href="@{/admin/index}">Indice</a></li>
-            <li><a class="dropdown-item" data-th-href="@{/admin/nuevolibro}">Añadir Libros</a></li>
+            <li><a class="dropdown-item" data-th-href="@{/libros/nuevolibro}">Añadir Libros</a></li>
           </ul>
         </li>
         <li class="nav-item">

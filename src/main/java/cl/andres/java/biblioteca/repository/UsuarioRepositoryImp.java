@@ -29,7 +29,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 	}
 
 	@Override
-	public Usuario findById(int id) {
+	public Usuario findById(Long id) {
 		return jdbcTemplate.queryForObject("SELECT * FROM usuarios WHERE id = ?", this::makeObject);
 	}
 	
@@ -62,12 +62,11 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Long id) {
 		String sql = "DELETE FROM usuarios WHERE id = ?";
 		jdbcTemplate.update(sql,id);
 	}
 	
-
 
 	@Override
 	public int count() {

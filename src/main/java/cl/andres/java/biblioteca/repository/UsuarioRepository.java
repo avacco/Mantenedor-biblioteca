@@ -10,13 +10,13 @@ public interface UsuarioRepository {
 	
 	public int count();
 	
-	public Usuario findById(int id);
+	public Usuario findById(Long id);
 	
 	public void create(Usuario usuario);
 	
 	public void edit(Usuario usuario);
 	
-	public void delete(int id);
+	public void delete(Long id);
 	
 	public Usuario findByEmail(String email);
 }

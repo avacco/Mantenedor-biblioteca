@@ -9,11 +9,11 @@ public interface LibroRepository {
 	
 	public List<Libro> findAll();
 	
-	public Libro findById(int id);
+	public Libro findById(Long id);
 	
 	public void create(Libro libro);
 	
 	public void edit(Libro libro);
 	
-	public void delete(int id);
+	public void delete(Long id);
 }

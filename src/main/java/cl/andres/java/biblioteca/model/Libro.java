@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Libro {
 
-	private int id;
+	private Long id;
 	@Size(min=1,max=50)
 	private String nombre;
 	@Size(max=250)
 	private String descripcion;
+	private Long autor_id;
 	private Autor autor;
 }

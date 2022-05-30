@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MantenedorBibliotecaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MantenedorBibliotecaApplication.class, args);
+		SpringApplication.run(MantenedorBibliotecaApplication.class, args);		
 	}
 
 }

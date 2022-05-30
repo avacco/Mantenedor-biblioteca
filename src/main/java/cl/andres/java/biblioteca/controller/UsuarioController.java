@@ -16,6 +16,7 @@ public class UsuarioController {
 	UsuarioService usuarioService;
 	
 	@GetMapping("/generaradmin")
+	// genera una cuenta de administrador generico
 	public String generarAdmin() {
 		if(usuarioService.checkForAdmin() == null) {
 			
@@ -27,11 +28,6 @@ public class UsuarioController {
 			usuarioService.crearUsuario(usuario);
 		}
 		return "redirect:/";
-	}
-	
-	@GetMapping("/nuevolibro")
-	public String nuevo() {
-		return "admin/nuevolibro";
 	}
 	
 	@GetMapping("/index")

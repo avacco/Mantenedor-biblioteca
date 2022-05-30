@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Autor {
 
-	private int id;
+	private Long id;
 	@Size(min=1,max=50)
 	private String nombre;
 }
