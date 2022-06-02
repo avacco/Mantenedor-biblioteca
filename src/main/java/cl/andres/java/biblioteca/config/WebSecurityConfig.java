@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests(authorize -> authorize
-					.mvcMatchers("/","/ingreso","/admin/generaradmin","/libros").permitAll()
+					.mvcMatchers("/","/ingreso","/admin/generaradmin","/libros/listado").permitAll()
 					.mvcMatchers("/admin/index","/admin/nuevolibro").hasAuthority("ADMIN")
 					.anyRequest().authenticated()
 			)

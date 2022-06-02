@@ -14,50 +14,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cl.andres.java.biblioteca.model.Autor;
-import cl.andres.java.biblioteca.model.Libro;
 import cl.andres.java.biblioteca.repository.AutorRepository;
-import cl.andres.java.biblioteca.repository.LibroRepository;
-
 @Controller
-@RequestMapping("/libros")
-public class LibroController {
+@RequestMapping("/autor")
+public class AutorController {
 
-	@Autowired
-	LibroRepository libroRepository;
-	
 	@Autowired
 	AutorRepository autorRepository;
 	
-	@GetMapping("/nuevolibro")
-	public String nuevolibro(Libro libro, Model modelo) {
+	@GetMapping("/nuevoautor")
+	public String nuevolibro(Autor autor, Model modelo) {
 		List<Autor> autores = autorRepository.findAll();
 		modelo.addAttribute("autores",autores);
-		return "admin/nuevolibro";
+		return "admin/nuevoautor";
 	}
 	
-	@PostMapping("/procesar")
-	public String procesar(@Valid Libro libro, BindingResult validacion, Model modelo) {
+	@PostMapping("/procesarautor")
+	public String procesarAutor(@Valid Autor autor, BindingResult validacion, Model modelo) {
 		if(validacion.hasErrors()) { 
 			List<Autor> autores = autorRepository.findAll();
 			modelo.addAttribute("autores",autores);
-			return "admin/nuevolibro";
+			return "admin/nuevoautor";
 		}
-		libro.setAutor(autorRepository.findById(libro.getAutor_id()));
-		libroRepository.create(libro);
-		return "redirect:/libros/listado";
-	}
-	
-	@GetMapping("/listado")
-	public String listado(Model modelo) {
-		List<Libro> libros = libroRepository.findAll();
-		modelo.addAttribute("libro",libros);
-		return "/listalibros";
+		autorRepository.create(autor);
+		return "redirect:/autor/nuevoautor";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable (name="id") Long id) {
-		libroRepository.delete(id);
-		return "redirect:/libros/listado";
+		autorRepository.delete(id);
+		return "redirect:/autor/nuevoautor";
 	}
 	
 }

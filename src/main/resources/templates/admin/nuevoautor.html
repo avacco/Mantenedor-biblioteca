@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head data-th-replace="parts/head :: cabecera(~{::title}, _)">
+<meta charset="UTF-8">
+<title>Nuevo autor</title>
+</head>
+<body>
+<nav data-th-replace="parts/menu :: menu"></nav>
+<main class="container">
+	<div data-th-fragment="autor" data-th-remove="tag" class="my-3 p-3 bg-body rounded shadow-sm">	
+		<form method="POST" data-th-action="@{/autor/procesarautor}" data-th-object="${autor}">
+			<h1 class="border-bottom pb-2 mb-0">Agregar autor</h1>
+				<label class="form-label"> Nombre:</label> 
+					<input class="form-control" type="text" data-th-field="*{nombre}"/><br/> 
+				<button class="btn btn-primary" type="submit">Guardar</button> <a class="btn btn-danger" data-th-href="@{/}">Volver</a>
+		</form>
+	</div>
+	
+	<h1 class="border-bottom pb-2 mb-0" align="center"> Lista de Autores</h1>
+  	<div class="my-3 p-3 bg-body rounded shadow-sm">
+	  	<table id="sortTable" class="table">
+		<thead>
+			<tr>
+				<th style="cursor: pointer;">ID</th>
+				<th style="cursor: pointer;">Nombre</th>
+				<th data-sec-authorize="isAuthenticated()">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  data-th-each="autor: ${autores}">
+				<td data-th-text="${autor.id}"></td>
+				<td data-th-text="${autor.nombre}"></td>
+				<td data-sec-authorize="isAuthenticated()">
+				   	<a data-th-href="@{/autor/eliminar/{id}(id=${autor.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+  	</div>
+	
+</main>
+<div data-th-replace="parts/scripts :: scripts"></div>
+<div data-th-replace="parts/tablesort :: tablesort"></div>
+
+</body>
+</html>

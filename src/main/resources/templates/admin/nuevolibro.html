@@ -2,39 +2,38 @@
 <html>
 <head data-th-replace="parts/head :: cabecera(~{::title}, _)">
 <meta charset="UTF-8">
-<title>Inicio</title>
+<title>Nuevo libro</title>
 </head>
 <body class="body-light">
 <!-- include con thymeleaf  -->
 <nav data-th-replace="parts/menu :: menu"></nav>
-<form data-th-action="@{/libros/procesar}" data-th-object="${libro}"  method="POST"> 
-
 <main class="container">
-	<div class="my-3 p-3 bg-body rounded shadow-sm">
-		<h1 class="border-bottom pb-2 mb-0"> Agregar libro</h1>
-			<div data-th-if="${#fields.hasErrors('nombre')}" class="alert alert-danger">
-				<span data-th-if="${#fields.hasErrors('nombre')}">El nombre debe tener entre 1 y 50 caracteres</span>	
-			</div>
-			<div data-th-if="${#fields.hasErrors('descripcion')}" class="alert alert-danger">
-				<span data-th-if="${#fields.hasErrors('descripcion')}">La descripcion no puede exceder los 250 caracteres</span>
-			</div>
-		<label class="form-label"> Nombre:</label> 
-			<input class="form-control" type="text" data-th-field="*{nombre}" />
-		<label class="form-label"> Descripcion: </label> 
-			<input class="form-control" type="text" data-th-field="*{descripcion}" />
-		<label class="form-label">Autor:</label>
-			<select class="form-control" data-th-field="*{autor_id}">
-				<option data-th-each="autor : ${autores}" 
-						data-th-value="${autor.id}" 
-						data-th-text="${autor.nombre}" />
-			</select>
-			<br/>
-				
-		<input type="hidden" data-th-field="*{id}" />
-		<button class="btn btn-primary" type="submit">Guardar</button> 	<a class="btn btn-danger" data-th-href="@{/}">Volver</a>
-	</div>
+	<form data-th-action="@{/libros/procesar}" data-th-object="${libro}"  method="POST"> 
+		<div data-th-if="${#fields.hasErrors('nombre')}" class="alert alert-danger">
+			<span data-th-if="${#fields.hasErrors('nombre')}">El nombre debe tener entre 1 y 50 caracteres</span>	
+		</div>
+		<div data-th-if="${#fields.hasErrors('descripcion')}" class="alert alert-danger">
+			<span data-th-if="${#fields.hasErrors('descripcion')}">La descripcion no puede exceder los 250 caracteres</span>
+		</div>
+		<div class="my-3 p-3 bg-body rounded shadow-sm">
+			<h1 class="border-bottom pb-2 mb-0"> Agregar libro</h1>
+			<label class="form-label"> Nombre:</label> 
+				<input class="form-control" type="text" data-th-field="*{nombre}" />
+			<label class="form-label"> Descripcion: </label> 
+				<input class="form-control" type="text" data-th-field="*{descripcion}" />
+			<label class="form-label">Autor:</label>
+				<select class="form-control" data-th-field="*{autor_id}">
+					<option data-th-each="autor : ${autores}" 
+							data-th-value="${autor.id}" 
+							data-th-text="${autor.nombre}" />
+				</select>
+				<br/>
+					
+			<input type="hidden" data-th-field="*{id}" />
+			<button class="btn btn-primary" type="submit">Guardar</button> 	<a class="btn btn-danger" data-th-href="@{/}">Volver</a>
+		</div>
+	</form>
 </main>
-</form>
 <div data-th-replace="parts/scripts :: scripts"></div>
 
 </body>
